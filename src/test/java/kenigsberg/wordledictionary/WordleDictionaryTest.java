@@ -34,6 +34,6 @@ class WordleDictionaryTest
         ArrayList<String> wordList = dictionary.getList();
 
         // then
-        Assertions.assertTrue(wordList.size() == 167964);
+        assertEquals(167964, wordList.size());
     }
 }

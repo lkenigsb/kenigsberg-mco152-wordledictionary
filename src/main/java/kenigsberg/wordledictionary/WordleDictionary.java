@@ -18,10 +18,9 @@ public class WordleDictionary
     }
 
 
-
     public String getDefinition(String word) throws IOException
     {
-        StringBuilder definition = new StringBuilder("");
+        StringBuilder definition = new StringBuilder();
 
         FileReader fileReader = new FileReader(this.dictionary);
 
@@ -30,13 +29,13 @@ public class WordleDictionary
         String line = bufferedReader.readLine();
         while (line != null)
         {
-            //line = bufferedReader.readLine();
+
             String[] words = line.split(" ");
-            //now words[0] = the word to define
 
             if (words[0].equals(word))
             {
-                definition.append(line.substring(word.length()+1));
+                definition.append(line.substring(word.length() + 1));
+                break;
             }
             line = bufferedReader.readLine();
         }
