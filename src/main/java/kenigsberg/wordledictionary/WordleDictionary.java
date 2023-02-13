@@ -7,26 +7,36 @@ public class WordleDictionary
 {
     private final File dictionary;
     private final ArrayList<String> words;
+    private final ArrayList<String> definitions;
+    private final FileReader fileReader;
+    private final BufferedReader bufferedReader;
 
     public WordleDictionary() throws IOException
     {
         this.dictionary = new File("src/main/java/kenigsberg/wordledictionary/dictionary.txt");
-
         words = new ArrayList<>();
+        definitions = new ArrayList<>();
+        fileReader = new FileReader(this.dictionary);
+        bufferedReader = new BufferedReader(fileReader);
 
-        FileReader fileReader = new FileReader(this.dictionary);
-
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
 
         String line = bufferedReader.readLine();
 
         while (line != null)
         {
+            String[] lineSplit = line.split(" ", 2);
 
-            String[] word = line.split(" ");
-            //now words[0] = the word to define
+            if (lineSplit.length == 2)
+            {
+                words.add(lineSplit[0]);
+                definitions.add(lineSplit[1]);
+            }
+            else
+            {
+                words.add(lineSplit[0]);
+                definitions.add("No definition listed");
+            }
 
-            words.add(word[0]);
             line = bufferedReader.readLine();
         }
     }
@@ -39,27 +49,17 @@ public class WordleDictionary
 
     public String getDefinition(String word) throws IOException
     {
-        StringBuilder definition = new StringBuilder();
 
-        FileReader fileReader = new FileReader(this.dictionary);
-
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-        String line = bufferedReader.readLine();
-        while (line != null)
+        int indexOfDef = 0;
+        for (int i = 0; i < words.size(); i++)
         {
-
-            String[] words = line.split(" ");
-
-            if (words[0].equals(word))
+            if (word.equals(words.get(i)))
             {
-                definition.append(line.substring(word.length() + 1));
+                indexOfDef = i;
                 break;
             }
-            line = bufferedReader.readLine();
         }
-
-        return definition.toString();
+        return definitions.get(indexOfDef);
     }
 
 
