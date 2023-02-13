@@ -6,10 +6,29 @@ import java.util.ArrayList;
 public class WordleDictionary
 {
     private final File dictionary;
+    private final ArrayList<String> words;
 
-    public WordleDictionary() throws FileNotFoundException
+    public WordleDictionary() throws IOException
     {
         this.dictionary = new File("src/main/java/kenigsberg/wordledictionary/dictionary.txt");
+
+        words = new ArrayList<>();
+
+        FileReader fileReader = new FileReader(this.dictionary);
+
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        String line = bufferedReader.readLine();
+
+        while (line != null)
+        {
+
+            String[] word = line.split(" ");
+            //now words[0] = the word to define
+
+            words.add(word[0]);
+            line = bufferedReader.readLine();
+        }
     }
 
     public File getDictionary()
@@ -46,23 +65,6 @@ public class WordleDictionary
 
     public ArrayList<String> getList() throws IOException
     {
-        ArrayList<String> words = new ArrayList<>();
-
-        FileReader fileReader = new FileReader(this.dictionary);
-
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-        String line = bufferedReader.readLine();
-
-        while (line != null)
-        {
-
-            String[] word = line.split(" ");
-            //now words[0] = the word to define
-
-            words.add(word[0]);
-            line = bufferedReader.readLine();
-        }
 
         return words;
     }
