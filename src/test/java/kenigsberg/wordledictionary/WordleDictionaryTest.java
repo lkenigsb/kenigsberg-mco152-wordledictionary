@@ -3,7 +3,6 @@ package kenigsberg.wordledictionary;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -22,6 +21,19 @@ class WordleDictionaryTest
 
         // then
         Assertions.assertEquals("rough, cindery lava [n -S]", theDef);
+    }
+
+    @Test
+    public void getDefinitionFail() throws IOException
+    {
+        // given
+        WordleDictionary dictionary = new WordleDictionary();
+
+        // when
+        String notFound = dictionary.getDefinition("LIBBY");
+
+        // then
+        assertNull(notFound);
     }
 
     @Test

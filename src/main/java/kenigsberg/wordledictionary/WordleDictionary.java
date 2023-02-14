@@ -58,7 +58,7 @@ public class WordleDictionary
 
             }
         }
-        return "Word not found";
+        return null;
     }
 
 
