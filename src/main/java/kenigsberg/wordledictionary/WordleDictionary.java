@@ -49,17 +49,15 @@ public class WordleDictionary
 
     public String getDefinition(String word) throws IOException
     {
-
-        int indexOfDef = 0;
-        for (int i = 0; i < words.size(); i++)
+        int i;
+        for (i = 0; i < words.size(); i++)
         {
             if (word.equals(words.get(i)))
             {
-                indexOfDef = i;
                 break;
             }
         }
-        return definitions.get(indexOfDef);
+        return definitions.get(i);
     }
 
 
