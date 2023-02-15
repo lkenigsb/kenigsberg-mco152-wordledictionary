@@ -36,7 +36,6 @@ public class WordleDictionary
                 words.add(lineSplit[0]);
                 definitions.add("No definition listed");
             }
-
             line = bufferedReader.readLine();
         }
     }
@@ -47,24 +46,22 @@ public class WordleDictionary
     }
 
 
-    public String getDefinition(String word) throws IOException
+    public String getDefinition(String word)
     {
-
+        word = word.toUpperCase();
         for (int i = 0; i < words.size(); i++)
         {
             if (word.equals(words.get(i)))
             {
                 return definitions.get(i);
-
             }
         }
         return null;
     }
 
 
-    public ArrayList<String> getList() throws IOException
+    public ArrayList<String> getList()
     {
-
         return words;
     }
 
