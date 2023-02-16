@@ -38,13 +38,26 @@ class WordleGameTest
     }
 
     @Test
+    public void guessIncorrectAmountLetters() throws IOException
+    {
+        // given
+        WordleGame game = new WordleGame();
+
+        // then
+        CharResult[] results = game.guess("AA");
+
+        // when
+        Assertions.assertArrayEquals(null, results);
+    }
+
+    @Test
     public void guessIncorrect() throws IOException
     {
         // given
         WordleGame game = new WordleGame();
 
         // then
-        CharResult[] results = game.guess("HELLO");
+        CharResult[] results = game.guess("POOLS");
 
         // when
         Assertions.assertEquals(5, results.length);

@@ -36,6 +36,11 @@ public class WordleGame
 
     public CharResult[] guess(String guessString)
     {
+        if (guessString.length() != 5)
+        {
+            return null;
+        }
+
         guessString = guessString.toUpperCase();
 
         CharResult[] results = new CharResult[guessString.length()];
