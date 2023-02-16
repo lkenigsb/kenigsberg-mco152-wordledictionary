@@ -48,15 +48,17 @@ public class WordleDictionary
 
     public String getDefinition(String word)
     {
-        word = word.toUpperCase();
-        for (int i = 0; i < words.size(); i++)
+
+        int index = words.indexOf(word.toUpperCase());
+
+        if (index == -1)
         {
-            if (word.equals(words.get(i)))
-            {
-                return definitions.get(i);
-            }
+            return null;
         }
-        return null;
+        else
+        {
+            return definitions.get(index);
+        }
     }
 
 
