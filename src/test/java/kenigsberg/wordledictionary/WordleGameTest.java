@@ -39,6 +39,8 @@ class WordleGameTest
         Assertions.assertArrayEquals(expected, results);
     }
 
+    /*
+    ASK IF SHOULD INCLUDE
     @Test
     public void guessIncorrectAmountLetters() throws IOException
     {
@@ -51,6 +53,8 @@ class WordleGameTest
         // when
         Assertions.assertArrayEquals(null, results);
     }
+    */
+
 
     @Test
     public void guessIncorrect() throws IOException
@@ -59,7 +63,7 @@ class WordleGameTest
         WordleGame game = new WordleGame();
 
         // then
-        CharResult[] results = game.guess("POOLS");
+        CharResult[] results = game.guess("HOYAH");
         CharResult[] incorrect = {CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct};
         // when
         Assertions.assertFalse(Arrays.equals(results, incorrect));

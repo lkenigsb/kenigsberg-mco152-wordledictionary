@@ -38,10 +38,13 @@ public class WordleGame
 
     public CharResult[] guess(String guessString)
     {
+        /*
+        Ask Professor in person if should keep this in
         if (guessString.length() != 5)
         {
-            return null;
+            return "Incorrect amount of Letter";
         }
+        */
 
         guessString = guessString.toUpperCase();
 
