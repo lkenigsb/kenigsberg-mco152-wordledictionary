@@ -48,4 +48,17 @@ class WordleDictionaryTest
         // then
         assertEquals(167964, wordList.size());
     }
+
+    @Test
+    public void getDefinitionFormats() throws IOException
+    {
+        // given
+        WordleDictionary dictionary = new WordleDictionary();
+
+        // when
+        String theDef = dictionary.getDefinition("formatting");
+
+        // then
+        Assertions.assertEquals("<format=v> [v]", theDef);
+    }
 }
