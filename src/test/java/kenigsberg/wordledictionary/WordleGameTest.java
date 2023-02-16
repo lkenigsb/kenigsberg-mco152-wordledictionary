@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 class WordleGameTest
 {
@@ -58,9 +60,9 @@ class WordleGameTest
 
         // then
         CharResult[] results = game.guess("POOLS");
-
+        CharResult[] incorrect = {CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct};
         // when
-        Assertions.assertEquals(5, results.length);
+        Assertions.assertFalse(Arrays.equals(results, incorrect));
     }
 
 }

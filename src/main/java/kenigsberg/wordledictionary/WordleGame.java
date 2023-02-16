@@ -2,11 +2,13 @@ package kenigsberg.wordledictionary;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class WordleGame
 {
     private final String correctWord;
+    private final Random random = new Random();
 
     public WordleGame() throws IOException
     {
@@ -24,7 +26,7 @@ public class WordleGame
             }
         }
 
-        int indexOfCorrectWord = (int) (Math.random() * (fiveLetterWords.size() + 1));
+        int indexOfCorrectWord = random.nextInt(fiveLetterWords.size());
         this.correctWord = fiveLetterWords.get(indexOfCorrectWord);
     }
 
