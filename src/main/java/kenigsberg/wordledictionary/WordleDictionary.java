@@ -48,7 +48,6 @@ public class WordleDictionary
 
     public String getDefinition(String word)
     {
-
         int index = words.indexOf(word.toUpperCase());
 
         if (index == -1)
