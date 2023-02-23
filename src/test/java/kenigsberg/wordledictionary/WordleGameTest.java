@@ -2,71 +2,47 @@ package kenigsberg.wordledictionary;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
-class WordleGameTest
-{
+import static kenigsberg.wordledictionary.CharResult.*;
+import static org.mockito.Mockito.doReturn;
 
-    @Test
-    public void getCorrectWord() throws IOException
-    {
-        // given
-        WordleGame game = new WordleGame();
+class WordleGameTest {
 
-        // then
-        String correctWord = game.getCorrectWord();
-
-        // when
-        Assertions.assertEquals(5, correctWord.length());
-    }
 
     @Test
-    public void guessCorrect() throws IOException
-    {
+    public void guessCorrect() {
         // given
-        WordleGame game = new WordleGame();
+        WordleDictionary wordleDictionary = Mockito.mock(WordleDictionary.class);
+        ArrayList<String> words = new ArrayList<>(List.of("APPLE"));
+        doReturn(words).when(wordleDictionary).getList();
+        WordleGame game = new WordleGame(wordleDictionary);
 
         // then
-        String correctWord = game.getCorrectWord();
-        CharResult[] results = game.guess(correctWord.toLowerCase());//checking if works for lowercase words
-        CharResult[] expected = {CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct};
+        CharResult[] results = game.guess("APPLE");//checking if works for lowercase words
+        CharResult[] expected = {Correct, Correct, Correct, Correct, Correct};
 
 
         // when
         Assertions.assertArrayEquals(expected, results);
     }
 
-    /*
-    ASK IF SHOULD INCLUDE
     @Test
-    public void guessIncorrectAmountLetters() throws IOException
-    {
+    public void guessIncorrect() {
         // given
-        WordleGame game = new WordleGame();
-
-        // then
-        CharResult[] results = game.guess("AA");
-
-        // when
-        Assertions.assertArrayEquals(null, results);
-    }
-    */
-
-
-    @Test
-    public void guessIncorrect() throws IOException
-    {
-        // given
-        WordleGame game = new WordleGame();
+        WordleDictionary wordleDictionary = Mockito.mock(WordleDictionary.class);
+        ArrayList<String> words = new ArrayList<>(List.of("APPLE"));
+        doReturn(words).when(wordleDictionary).getList();
+        WordleGame game = new WordleGame(wordleDictionary);
 
         // then
         CharResult[] results = game.guess("HOYAH");
-        CharResult[] incorrect = {CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct};
+        CharResult[] incorrect = {NotFound, NotFound, NotFound, WrongPlace, NotFound};
         // when
-        Assertions.assertFalse(Arrays.equals(results, incorrect));
+        Assertions.assertArrayEquals(incorrect, results);
     }
 
 }
