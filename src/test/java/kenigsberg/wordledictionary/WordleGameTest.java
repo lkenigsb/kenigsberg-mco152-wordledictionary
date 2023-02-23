@@ -22,7 +22,8 @@ class WordleGameTest {
         WordleGame game = new WordleGame(wordleDictionary);
 
         // then
-        CharResult[] results = game.guess("APPLE");//checking if works for lowercase words
+        //checking if works for lowercase words
+        CharResult[] results = game.guess("APPLE");
         CharResult[] expected = {Correct, Correct, Correct, Correct, Correct};
 
 
@@ -41,6 +42,7 @@ class WordleGameTest {
         // then
         CharResult[] results = game.guess("HOYAH");
         CharResult[] incorrect = {NotFound, NotFound, NotFound, WrongPlace, NotFound};
+
         // when
         Assertions.assertArrayEquals(incorrect, results);
     }
