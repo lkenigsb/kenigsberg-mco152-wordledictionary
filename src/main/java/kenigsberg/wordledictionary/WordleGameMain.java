@@ -1,19 +1,11 @@
 package kenigsberg.wordledictionary;
 
-import org.mockito.Mockito;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.mockito.Mockito.doReturn;
+import java.io.IOException;
 
 public class WordleGameMain {
-    public static void main(String[] args) {
-        WordleDictionary wordleDictionary = Mockito.mock(WordleDictionary.class);
-        ArrayList<String> words = new ArrayList<>(List.of("APPLE"));
-        doReturn(words).when(wordleDictionary).getList();
+    public static void main(String[] args) throws IOException {
 
-        WordleGameFrame frame = new WordleGameFrame(new WordleGame(wordleDictionary));
+        WordleGameFrame frame = new WordleGameFrame(new WordleGame(new WordleDictionary()));
         frame.setVisible(true);
     }
 }
