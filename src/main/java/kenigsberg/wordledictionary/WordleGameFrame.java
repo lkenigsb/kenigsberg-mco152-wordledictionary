@@ -41,6 +41,9 @@ public class WordleGameFrame extends JFrame {
         JButton button = new JButton("Guess");
         mainPanel.add(button, BorderLayout.SOUTH);
 
+        JLabel result = new JLabel();
+        mainPanel.add(result, BorderLayout.CENTER);
+
 
         button.addActionListener(new ActionListener() {
             @Override
@@ -51,8 +54,7 @@ public class WordleGameFrame extends JFrame {
                 theGuess = guess.getText();
                 guessResult = wordleGame.guess(theGuess);
 
-                JLabel result = new JLabel(Arrays.toString(guessResult));
-                mainPanel.add(result, BorderLayout.CENTER);
+                result.setText(Arrays.toString(guessResult));
                 button.setText("Guess Again");
             }
         });
