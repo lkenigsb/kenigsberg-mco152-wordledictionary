@@ -1,27 +1,21 @@
 package kenigsberg.wordledictionary;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 
-public class WordleGame
-{
+public class WordleGame {
     private final String correctWord;
     private final Random random = new Random();
 
-    public WordleGame() throws IOException
-    {
-        WordleDictionary wordleDictionary = new WordleDictionary();
+    public WordleGame(WordleDictionary wordleDictionary) {
         ArrayList<String> fiveLetterWords = new ArrayList<>();
 
         ArrayList<String> allWords = wordleDictionary.getList();
 
 
-        for (int i = 0; i < allWords.size(); i++)
-        {
-            if (allWords.get(i).length() == 5)
-            {
+        for (int i = 0; i < allWords.size(); i++) {
+            if (allWords.get(i).length() == 5) {
                 fiveLetterWords.add(allWords.get(i));
             }
         }
@@ -30,21 +24,12 @@ public class WordleGame
         this.correctWord = fiveLetterWords.get(indexOfCorrectWord);
     }
 
-    public String getCorrectWord()
-    {
+    public String getCorrectWord() {
         return correctWord;
     }
 
 
-    public CharResult[] guess(String guessString)
-    {
-        /*
-        Ask Professor in person if should keep this in
-        if (guessString.length() != 5)
-        {
-            return "Incorrect amount of Letter";
-        }
-        */
+    public CharResult[] guess(String guessString) {
 
         guessString = guessString.toUpperCase();
 
@@ -52,22 +37,15 @@ public class WordleGame
 
         char letter;
 
-        for (int i = 0; i < guessString.length(); i++)
-        {
+        for (int i = 0; i < guessString.length(); i++) {
             letter = guessString.charAt(i);
 
 
-            if (!this.correctWord.contains(Character.toString(letter)))
-            {
+            if (!this.correctWord.contains(Character.toString(letter))) {
                 results[i] = CharResult.NotFound;
-            }
-
-            else if (this.correctWord.charAt(i) == letter)
-            {
+            } else if (this.correctWord.charAt(i) == letter) {
                 results[i] = CharResult.Correct;
-            }
-            else
-            {
+            } else {
                 results[i] = CharResult.WrongPlace;
             }
         }
