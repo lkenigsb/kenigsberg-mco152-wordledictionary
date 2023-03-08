@@ -18,7 +18,8 @@ public class WordleController {
     private String correct;
 
 
-    public WordleController(WordleGame wordleGame, WordleDictionary wordleDictionary, JLabel[][] labels, JButton[] keyboard, JButton enter, JButton backspace) {
+    public WordleController(WordleGame wordleGame, WordleDictionary wordleDictionary,
+                            JLabel[][] labels, JButton[] keyboard, JButton enter, JButton backspace) {
         this.wordleGame = wordleGame;
         this.wordleDictionary = wordleDictionary;
         this.labels = labels;
@@ -33,7 +34,7 @@ public class WordleController {
     /**
      * Called when you type the letter in or press letter on keyboard AKA actionListener button
      *
-     * @param letter
+     * @param letter - the letter to be added to the fields grid
      */
     public void addLetter(String letter) {
         this.correct = wordleGame.getCorrectWord();
@@ -82,11 +83,13 @@ public class WordleController {
 
             //if completed!
             if (complete) {
-                JOptionPane.showMessageDialog(labels[guessNum][0], "CONGRATS!!! YOU GOT THE GUESS!!");
+                JOptionPane.showMessageDialog(labels[guessNum][0],
+                        "CONGRATS!!! YOU GOT THE GUESS!!");
             }
             //if it was the last guess
             if (guessNum == 6) {
-                JOptionPane.showMessageDialog(labels[--guessNum][4], "Game Over, try again next time");
+                JOptionPane.showMessageDialog(labels[--guessNum][4],
+                        "Game Over, try again next time");
             }
         }
     }

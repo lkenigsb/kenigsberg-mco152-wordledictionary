@@ -21,7 +21,8 @@ public class WordleGameFrame extends JFrame {
 
     public WordleGameFrame(WordleGame wordleGame, WordleDictionary dictionary) {
 
-        controller = new WordleController(wordleGame, dictionary, fields, keyboard, enter, backspace);
+        controller = new WordleController(wordleGame, dictionary,
+                fields, keyboard, enter, backspace);
 
         String[] letters = new String[]{"Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
                 "A", "S", "D", "F", "G", "H", "J", "K", "L",
@@ -119,7 +120,8 @@ public class WordleGameFrame extends JFrame {
         for (JButton letter : keyboard) {
 
             letter.addActionListener(e -> {
-                //Now if one of the letters have been pressed (on screen buttons) want to call the Controller
+                //Now if one of the letters have been pressed
+                // (on screen buttons) want to call the Controller
                 controller.addLetter(letter.getText());
                 System.out.println("Letter pressed");
 
