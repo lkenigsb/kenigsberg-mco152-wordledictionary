@@ -8,15 +8,17 @@ public class WordleGame {
     private final String correctWord;
     private final Random random = new Random();
 
+    private final ArrayList<String> fiveLetterWords;
+
     public WordleGame(WordleDictionary wordleDictionary) {
-        ArrayList<String> fiveLetterWords = new ArrayList<>();
+        fiveLetterWords = new ArrayList<>();
 
         ArrayList<String> allWords = wordleDictionary.getList();
 
 
-        for (int i = 0; i < allWords.size(); i++) {
-            if (allWords.get(i).length() == 5) {
-                fiveLetterWords.add(allWords.get(i));
+        for (String allWord : allWords) {
+            if (allWord.length() == 5) {
+                fiveLetterWords.add(allWord);
             }
         }
 
@@ -50,6 +52,10 @@ public class WordleGame {
             }
         }
         return results;
+    }
+
+    public ArrayList<String> getFiveLetterWords() {
+        return this.fiveLetterWords;
     }
 
 }
