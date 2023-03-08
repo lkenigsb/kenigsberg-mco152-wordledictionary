@@ -64,14 +64,13 @@ public class WordleGameFrame extends JFrame {
         mainPanel.add(southPanel, BorderLayout.SOUTH);
 
 
-        //Add code here
-
-
         //For every iteration of JLabel 2D Array, create Label, add to array, and add to centerPanel
         for (int i = 0; i < fields.length; i++) {
             for (int j = 0; j < fields[i].length; j++) {
                 fields[i][j] = new JLabel();
                 fields[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
+                fields[i][j].setHorizontalAlignment(SwingConstants.CENTER);
+                fields[i][j].setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
                 centerPanel.add(fields[i][j]);
             }
         }

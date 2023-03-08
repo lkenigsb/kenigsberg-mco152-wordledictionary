@@ -44,8 +44,6 @@ public class WordleController {
 
         //set the letter to the next guess label
         labels[guessNum][guessLetter].setText(letter);
-        labels[guessNum][guessLetter].setHorizontalAlignment(SwingConstants.CENTER);
-        labels[guessNum][guessLetter].setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
 
         guessLetter++;
     }
@@ -59,7 +57,7 @@ public class WordleController {
         } else {
             //word exists
             //Then guess
-            CharResult[] guessResult = wordleGame.guess(String.valueOf(theGuess));
+            CharResult[] guessResult = wordleGame.guess(theGuess.toString());
 
             //set theGuess variable to empty - so that it'll be empty for the next guess
             theGuess.delete(0, theGuess.length());
