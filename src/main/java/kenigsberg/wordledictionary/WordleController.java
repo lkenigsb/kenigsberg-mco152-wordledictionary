@@ -35,7 +35,8 @@ public class WordleController {
         this.theGuess.append(letter); //adds the letter to the guess
 
         //This if statement accounts for bug if backspace
-        // more than the amount of letters that exists, will goive index out of bounds error for addign a letter
+        // more than the amount of letters that exists,
+        // will give index out of bounds error for adding a letter
         if (labels[guessNum][0].getText() == null) {
             guessLetter = 0;
             labels[guessNum][0].setText(letter);
