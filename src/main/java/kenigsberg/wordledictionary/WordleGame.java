@@ -2,6 +2,7 @@ package kenigsberg.wordledictionary;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 
 
 public class WordleGame {
@@ -13,7 +14,7 @@ public class WordleGame {
     public WordleGame(WordleDictionary wordleDictionary) {
         fiveLetterWords = new ArrayList<>();
 
-        ArrayList<String> allWords = wordleDictionary.getList();
+        Set<String> allWords = wordleDictionary.getList();
 
 
         for (String allWord : allWords) {

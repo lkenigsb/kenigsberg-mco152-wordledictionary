@@ -4,8 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static kenigsberg.wordledictionary.CharResult.*;
 import static org.mockito.Mockito.doReturn;
@@ -17,7 +18,7 @@ class WordleGameTest {
     public void guessCorrect() {
         // given
         WordleDictionary wordleDictionary = Mockito.mock(WordleDictionary.class);
-        ArrayList<String> words = new ArrayList<>(List.of("APPLE"));
+        Set<String> words = new HashSet<>(List.of("APPLE"));
         doReturn(words).when(wordleDictionary).getList();
         WordleGame game = new WordleGame(wordleDictionary);
 
@@ -35,7 +36,7 @@ class WordleGameTest {
     public void guessIncorrect() {
         // given
         WordleDictionary wordleDictionary = Mockito.mock(WordleDictionary.class);
-        ArrayList<String> words = new ArrayList<>(List.of("APPLE"));
+        Set<String> words = new HashSet<>(List.of("APPLE"));
         doReturn(words).when(wordleDictionary).getList();
         WordleGame game = new WordleGame(wordleDictionary);
 
