@@ -8,28 +8,21 @@ public class WordleController {
     private final WordleDictionary wordleDictionary;
 
     private final JLabel[][] labels;
-    private final JButton[] keyboard;
-    private final JButton enter;
-    private final JButton backspace;
-    private int guessNum;
-    private int guessLetter;
-    private boolean complete;
-    private StringBuilder theGuess;
-    private String correct;
+    int guessNum;
+    int guessLetter;
+    StringBuilder theGuess;
 
 
     public WordleController(WordleGame wordleGame, WordleDictionary wordleDictionary,
-                            JLabel[][] labels, JButton[] keyboard, JButton enter, JButton backspace) {
+                            JLabel[][] labels) {
         this.wordleGame = wordleGame;
         this.wordleDictionary = wordleDictionary;
         this.labels = labels;
-        this.keyboard = keyboard;
-        this.enter = enter;
-        this.backspace = backspace;
         this.theGuess = new StringBuilder();
         this.guessNum = 0;
         this.guessLetter = 0;
     }
+
 
     /**
      * Called when you type the letter in or press letter on keyboard AKA actionListener button
@@ -37,20 +30,26 @@ public class WordleController {
      * @param letter - the letter to be added to the fields grid
      */
     public void addLetter(String letter) {
-        this.correct = wordleGame.getCorrectWord();
-        System.out.println(correct);
+        System.out.println(wordleGame.getCorrectWord());
         System.out.println("Reached addLetter method");
         this.theGuess.append(letter); //adds the letter to the guess
 
-        //set the letter to the next guess label
-        labels[guessNum][guessLetter].setText(letter);
+        //This if statement accounts for bug if backspace
+        // more than the amount of letters that exists, will goive index out of bounds error for addign a letter
+        if (labels[guessNum][0].getText() == null) {
+            guessLetter = 0;
+            labels[guessNum][0].setText(letter);
+        } else {
+            //set the letter to the next guess label
+            labels[guessNum][guessLetter].setText(letter);
 
+        }
         guessLetter++;
     }
 
 
     public void enterGuess() {
-        complete = true;
+        boolean complete = true;
 
         if (wordleDictionary.getDefinition(String.valueOf(theGuess)) == null) {
             JOptionPane.showMessageDialog(labels[guessNum][0], "Word Does Not Exist");
@@ -65,30 +64,40 @@ public class WordleController {
             //set the word labels based on the guessResult (color coded)
             for (int letterIndex = 0; letterIndex < labels[guessNum].length; letterIndex++) {
                 if (guessResult[letterIndex] == CharResult.NotFound) {
-                    labels[guessNum][letterIndex].setForeground(Color.gray);
+                    labels[guessNum][letterIndex].setForeground(Color.white);
+                    labels[guessNum][letterIndex].setBackground(Color.gray);
+                    labels[guessNum][letterIndex].setOpaque(true);
                     complete = false;
                 } else if (guessResult[letterIndex] == CharResult.Correct) {
-                    labels[guessNum][letterIndex].setForeground(Color.green);
+                    labels[guessNum][letterIndex].setForeground(Color.white);
+                    labels[guessNum][letterIndex].setBackground(Color.green);
+                    labels[guessNum][letterIndex].setOpaque(true);
                 } else if (guessResult[letterIndex] == CharResult.WrongPlace) {
-                    labels[guessNum][letterIndex].setForeground(Color.orange);
+                    labels[guessNum][letterIndex].setForeground(Color.white);
+                    labels[guessNum][letterIndex].setBackground(Color.orange);
+                    labels[guessNum][letterIndex].setOpaque(true);
                     complete = false;
                 }
             }
+
+            //if completed!
+            if (complete) {
+                JOptionPane.showMessageDialog(null,
+                        "CONGRATS!!! YOU GOT THE GUESS!!");
+            }
+
+            //if it was the last guess
+            if (guessNum == 5 && !complete) {
+                JOptionPane.showMessageDialog(null,
+                        "Game Over, try again next time");
+            }
+
 
             //Once guess was entered can update the guessNum and guessLetter
             guessNum++;
             guessLetter = 0;
 
-            //if completed!
-            if (complete) {
-                JOptionPane.showMessageDialog(labels[guessNum][0],
-                        "CONGRATS!!! YOU GOT THE GUESS!!");
-            }
-            //if it was the last guess
-            if (guessNum == 6) {
-                JOptionPane.showMessageDialog(labels[--guessNum][4],
-                        "Game Over, try again next time");
-            }
+
         }
     }
 

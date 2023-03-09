@@ -1,6 +1,7 @@
 package kenigsberg.wordledictionary;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +23,7 @@ public class WordleGameFrame extends JFrame {
     public WordleGameFrame(WordleGame wordleGame, WordleDictionary dictionary) {
 
         controller = new WordleController(wordleGame, dictionary,
-                fields, keyboard, enter, backspace);
+                fields);
 
         String[] letters = new String[]{"Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
                 "A", "S", "D", "F", "G", "H", "J", "K", "L",
@@ -57,6 +58,9 @@ public class WordleGameFrame extends JFrame {
         southPanel.add(flowLayout3);
 
         JLabel title = new JLabel("Welcome to Wordle Game");
+        title.setBorder(new EmptyBorder(20, 0, 20, 0));
+        title.setFont(new Font(Font.MONOSPACED, Font.BOLD, 35));
+        title.setForeground(Color.darkGray);
         mainPanel.add(title, BorderLayout.NORTH);
         title.setHorizontalAlignment(JLabel.CENTER);
 
@@ -127,6 +131,7 @@ public class WordleGameFrame extends JFrame {
             });
         }
 
+
         //Enter pressed
         //!!!!QUESTION FOR PROF. SCHWIMMER NEXT CLASS:
         //WHY DID THE LAMBDA VERSION OF ENTER & DELETE NOT WORK???
@@ -151,7 +156,6 @@ public class WordleGameFrame extends JFrame {
 
         //This will listen out for key's typed
         setFocusable(true);
-        requestFocus();
 
         addKeyListener(new KeyListener() {
 
