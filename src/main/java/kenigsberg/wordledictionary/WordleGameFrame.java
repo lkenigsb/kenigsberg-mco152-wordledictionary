@@ -126,7 +126,7 @@ public class WordleGameFrame extends JFrame {
                 //Now if one of the letters have been pressed
                 // (on screen buttons) want to call the Controller
                 controller.addLetter(letter.getText());
-                System.out.println("Letter pressed");
+                requestFocus();
 
             });
         }
@@ -141,7 +141,7 @@ public class WordleGameFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.enterGuess();
-                System.out.println("Enter pressed");
+                requestFocus();
             }
         });
 
@@ -150,7 +150,7 @@ public class WordleGameFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.backspace();
-                System.out.println("Backspace pressed");
+                requestFocus();
             }
         });
 
@@ -161,17 +161,13 @@ public class WordleGameFrame extends JFrame {
 
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println("Reached keyListener");
                 char character = e.getKeyChar();
                 if (Character.isAlphabetic(character)) {
                     controller.addLetter(String.valueOf(e.getKeyChar()));
-                    System.out.println("Letter pressed on keyboard");
                 } else if (character == KeyEvent.VK_ENTER) {
                     controller.enterGuess();
-                    System.out.println("Enter pressed on keyboard");
                 } else if (character == KeyEvent.VK_BACK_SPACE) {
                     controller.backspace();
-                    System.out.println("Backspace pressed on keybaord");
                 }
             }
 

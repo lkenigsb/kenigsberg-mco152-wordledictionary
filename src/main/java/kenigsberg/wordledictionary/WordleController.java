@@ -30,26 +30,30 @@ public class WordleController {
      * @param letter - the letter to be added to the fields grid
      */
     public void addLetter(String letter) {
-        System.out.println(wordleGame.getCorrectWord());
-        System.out.println("Reached addLetter method");
-        this.theGuess.append(letter); //adds the letter to the guess
+        //Below if statement ensures that only use 5 letters typed used as a guess
+        // (more than 5 letters before hitting enter will not be included.
+        if (theGuess.length() < 5) {
+            this.theGuess.append(letter); //adds the letter to the guess
 
-        //This if statement accounts for bug if backspace
-        // more than the amount of letters that exists,
-        // will give index out of bounds error for adding a letter
-        if (labels[guessNum][0].getText() == null) {
-            guessLetter = 0;
-            labels[guessNum][0].setText(letter);
-        } else {
-            //set the letter to the next guess label
-            labels[guessNum][guessLetter].setText(letter);
+            //This if statement accounts for bug if backspace
+            // more than the amount of letters that exists,
+            // will give index out of bounds error for adding a letter
+            if (labels[guessNum][0].getText() == null) {
+                guessLetter = 0;
+                labels[guessNum][0].setText(letter);
+            } else {
+                //set the letter to the next guess label
+                labels[guessNum][guessLetter].setText(letter);
 
+            }
+            guessLetter++;
         }
-        guessLetter++;
+
     }
 
 
     public void enterGuess() {
+        System.out.println(wordleGame.getCorrectWord());
         boolean complete = true;
 
         if (wordleDictionary.getDefinition(String.valueOf(theGuess)) == null) {
