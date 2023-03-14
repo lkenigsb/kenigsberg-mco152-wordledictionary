@@ -87,14 +87,14 @@ public class WordleController {
 
             //if completed!
             if (complete) {
-                JOptionPane.showMessageDialog(null,
-                        "CONGRATS!!! YOU GOT THE GUESS!!");
+                //JOptionPane.showMessageDialog(null, "CONGRATS!!! YOU GOT THE GUESS!!");
+                System.out.println("Congrats! Game won!");
             }
 
             //if it was the last guess
             if (guessNum == 5 && !complete) {
-                JOptionPane.showMessageDialog(null,
-                        "Game Over, try again next time");
+                JOptionPane.showMessageDialog(null, "Game Over, try again next time");
+                //System.out.println("Game Over, try again next time");
             }
 
 

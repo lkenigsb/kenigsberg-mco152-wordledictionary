@@ -56,14 +56,15 @@ class WordleControllerTest {
         // when
         controller.enterGuess();
 
+
         // then
         verify(labels[0][0]).setBackground(Color.green);
         verify(labels[0][1]).setBackground(Color.green);
         verify(labels[0][2]).setBackground(Color.green);
         verify(labels[0][3]).setBackground(Color.green);
         verify(labels[0][4]).setBackground(Color.green);
-
     }
+
 
     @Test
     public void backspace() {
