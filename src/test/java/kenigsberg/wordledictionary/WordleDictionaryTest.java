@@ -4,15 +4,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-class WordleDictionaryTest
-{
+class WordleDictionaryTest {
     @Test
-    public void getDefinition() throws IOException
-    {
+    public void getDefinition() throws IOException {
         // given
         WordleDictionary dictionary = new WordleDictionary();
 
@@ -24,8 +23,7 @@ class WordleDictionaryTest
     }
 
     @Test
-    public void getDefinitionFail() throws IOException
-    {
+    public void getDefinitionFail() throws IOException {
         // given
         WordleDictionary dictionary = new WordleDictionary();
 
@@ -37,21 +35,19 @@ class WordleDictionaryTest
     }
 
     @Test
-    public void getList() throws IOException
-    {
+    public void getList() throws IOException {
         // given
         WordleDictionary dictionary = new WordleDictionary();
 
         // when
-        ArrayList<String> wordList = dictionary.getList();
+        Set<String> wordList = dictionary.getList();
 
         // then
         assertEquals(167964, wordList.size());
     }
 
     @Test
-    public void getDefinitionFormats() throws IOException
-    {
+    public void getDefinitionFormats() throws IOException {
         // given
         WordleDictionary dictionary = new WordleDictionary();
 
